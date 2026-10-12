@@ -1,4 +1,4 @@
-# Random Employee Data Generator
+# Dummy Data Generator
 
 A simple web application built with **HTML, JavaScript, Node.js, Express, MongoDB, and Mongoose** that generates 10 random employee records whenever the user clicks the **Generate Data** button.
 
