@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Generator</title>
+</head>
+
+<body>
+    <h1>Random Employee Generator</h1>
+    <button id="generateBtn">Generate Data</button>
+    <p id="message"></p>
+
+    <script>
+        const button = document.getElementById("generateBtn");
+        const message = document.getElementById("message");
+
+        button.addEventListener("click", async () => {
+            button.disabled = true;
+            message.textContent = "Generating employees...";
+
+            try {
+                const response = await fetch("/generate-data", {
+                    method: "POST"
+                });
+
+                const result = await response.text();
+
+                if (!response.ok) {
+                    throw new Error(result);
+                }
+
+                message.textContent = result;
+            } catch (error) {
+                message.textContent = "Error: " + error.message;
+                console.error("Fetch failed:", error);
+            } finally {
+                button.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>
